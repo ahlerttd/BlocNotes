@@ -24,9 +24,8 @@
 
 - (void)viewDidLoad
 {
-   /// [super viewDidLoad];
-   /// self.note = [[NSMutableArray alloc] init];
-   /// [self loadInitialData];
+    [super viewDidLoad];
+    
     
     AppDelegate *appDelegate =
     [[UIApplication sharedApplication] delegate];
@@ -35,21 +34,14 @@
     [appDelegate managedObjectContext];
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription
-                                   entityForName:@"Notes" inManagedObjectContext:context];
+                                   entityForName:@"Note" inManagedObjectContext:context];
     [fetchRequest setEntity:entity];
     NSError *error;
     self.noteDataArray = [context executeFetchRequest:fetchRequest error:&error];
-    
 
 }
 
 
-/*- (void)loadInitialData {
-    NoteItem *item1 = [[NoteItem alloc] init];
-    item1.note = @"First Note";
-    [self.note addObject:item1];
-   
-}*/
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -67,14 +59,9 @@
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ListPrototypeCell" forIndexPath:indexPath];
     
-    ///NoteItem *note = [self.note objectAtIndex:indexPath.row];
-    ///cell.textLabel.text = note.note;
+    NoteData *noteData = [noteDataArray objectAtIndex:indexPath.row];
+    cell.textLabel.text = noteData.note;
    
-    NoteData *note = [noteDataArray objectAtIndex:indexPath.row];
-    cell.textLabel.text = note.note;
-    ///cell.detailTextLabel.text = [NSString stringWithFormat:@"%@, %@",
-    ///                             info.city, info.state];
-    
     
     return cell;
 }
@@ -88,9 +75,7 @@
     
     if (item !=nil) {
         
-        [self.note addObject: item];
-        [self.tableView reloadData];
-       
+             
         AppDelegate *appDelegate =
         [[UIApplication sharedApplication] delegate];
         
@@ -101,6 +86,7 @@
                       insertNewObjectForEntityForName:@"Note"
                       inManagedObjectContext:context];
         noteData.note = source.noteItem.note;
+        
         
         
         NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
@@ -114,6 +100,8 @@
             
         }
         
+        self.noteDataArray = [context executeFetchRequest:fetchRequest error:&error];
+        [self.tableView reloadData];
         
         
         

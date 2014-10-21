@@ -16,9 +16,30 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+    
+    NSManagedObjectContext *context = [self managedObjectContext];
+    NoteData *noteData = [NSEntityDescription
+                                      insertNewObjectForEntityForName:@"Note"
+                                      inManagedObjectContext:context];
+    noteData.note = @"First Note";
+    NSError *error;
+    if (![context save:&error]) {
+        NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
+    }
+    
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription
+                                   entityForName:@"Note" inManagedObjectContext:context];
+    [fetchRequest setEntity:entity];
+    
+    NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
+    for (NSManagedObject *info in fetchedObjects) {
+        NSLog(@"Note: %@", [info valueForKey:@"note"]);
+    }
+    
     return YES;
 }
+
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
