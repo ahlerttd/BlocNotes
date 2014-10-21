@@ -15,6 +15,10 @@
 		170640F119F58FDF00971C2A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 170640F019F58FDF00971C2A /* Images.xcassets */; };
 		170640F419F58FDF00971C2A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 170640F219F58FDF00971C2A /* LaunchScreen.xib */; };
 		1706410019F58FDF00971C2A /* BlocNotesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 170640FF19F58FDF00971C2A /* BlocNotesTests.m */; };
+		1706410B19F5A33400971C2A /* AddNote.m in Sources */ = {isa = PBXBuildFile; fileRef = 1706410A19F5A33400971C2A /* AddNote.m */; };
+		1706410E19F5A3F600971C2A /* NotesList.m in Sources */ = {isa = PBXBuildFile; fileRef = 1706410D19F5A3F600971C2A /* NotesList.m */; };
+		1706411119F5AF7800971C2A /* NoteItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 1706411019F5AF7800971C2A /* NoteItem.m */; };
+		17F4079419F6EFB500BCAA8F /* NoteData.m in Sources */ = {isa = PBXBuildFile; fileRef = 17F4079319F6EFB500BCAA8F /* NoteData.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +46,14 @@
 		170640F919F58FDF00971C2A /* BlocNotesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BlocNotesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		170640FE19F58FDF00971C2A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		170640FF19F58FDF00971C2A /* BlocNotesTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BlocNotesTests.m; sourceTree = "<group>"; };
+		1706410919F5A33400971C2A /* AddNote.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AddNote.h; path = ../AddNote.h; sourceTree = "<group>"; };
+		1706410A19F5A33400971C2A /* AddNote.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AddNote.m; path = ../AddNote.m; sourceTree = "<group>"; };
+		1706410C19F5A3F600971C2A /* NotesList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotesList.h; sourceTree = "<group>"; };
+		1706410D19F5A3F600971C2A /* NotesList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotesList.m; sourceTree = "<group>"; };
+		1706410F19F5AF7800971C2A /* NoteItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteItem.h; sourceTree = "<group>"; };
+		1706411019F5AF7800971C2A /* NoteItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteItem.m; sourceTree = "<group>"; };
+		17F4079219F6EFB500BCAA8F /* NoteData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteData.h; sourceTree = "<group>"; };
+		17F4079319F6EFB500BCAA8F /* NoteData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteData.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,12 +97,20 @@
 			children = (
 				170640E419F58FDF00971C2A /* AppDelegate.h */,
 				170640E519F58FDF00971C2A /* AppDelegate.m */,
+				1706410919F5A33400971C2A /* AddNote.h */,
+				1706410A19F5A33400971C2A /* AddNote.m */,
 				170640EA19F58FDF00971C2A /* ViewController.h */,
 				170640EB19F58FDF00971C2A /* ViewController.m */,
 				170640ED19F58FDF00971C2A /* Main.storyboard */,
+				1706410C19F5A3F600971C2A /* NotesList.h */,
+				1706410D19F5A3F600971C2A /* NotesList.m */,
+				1706410F19F5AF7800971C2A /* NoteItem.h */,
+				1706411019F5AF7800971C2A /* NoteItem.m */,
 				170640F019F58FDF00971C2A /* Images.xcassets */,
 				170640F219F58FDF00971C2A /* LaunchScreen.xib */,
 				170640E719F58FDF00971C2A /* BlocNotes.xcdatamodeld */,
+				17F4079219F6EFB500BCAA8F /* NoteData.h */,
+				17F4079319F6EFB500BCAA8F /* NoteData.m */,
 				170640E019F58FDF00971C2A /* Supporting Files */,
 			);
 			path = BlocNotes;
@@ -225,7 +245,11 @@
 				170640E619F58FDF00971C2A /* AppDelegate.m in Sources */,
 				170640E919F58FDF00971C2A /* BlocNotes.xcdatamodeld in Sources */,
 				170640EC19F58FDF00971C2A /* ViewController.m in Sources */,
+				1706411119F5AF7800971C2A /* NoteItem.m in Sources */,
 				170640E319F58FDF00971C2A /* main.m in Sources */,
+				1706410B19F5A33400971C2A /* AddNote.m in Sources */,
+				1706410E19F5A3F600971C2A /* NotesList.m in Sources */,
+				17F4079419F6EFB500BCAA8F /* NoteData.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -418,6 +442,7 @@
 				1706410519F58FDF00971C2A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		1706410619F58FDF00971C2A /* Build configuration list for PBXNativeTarget "BlocNotesTests" */ = {
 			isa = XCConfigurationList;
@@ -426,6 +451,7 @@
 				1706410819F58FDF00971C2A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
