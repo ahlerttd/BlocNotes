@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14A388a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="GTR-DJ-8WE">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="14A388a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="GTR-DJ-8WE">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -14,22 +14,34 @@
                         <viewControllerLayoutGuide type="bottom" id="BVo-wb-yMM"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="2Bp-Xd-Tyr">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="New Note" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ueh-CZ-pij">
-                                <rect key="frame" x="16" y="256" width="427" height="30"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Title" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ueh-CZ-pij">
+                                <rect key="frame" x="16" y="72" width="288" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="mWj-5e-aem"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jFD-iJ-fzL">
+                                <rect key="frame" x="16" y="110" width="288" height="451"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <mutableString key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda. Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</mutableString>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Ueh-CZ-pij" firstAttribute="top" secondItem="rGL-sx-KzS" secondAttribute="bottom" constant="192" id="5wW-5o-hAD"/>
-                            <constraint firstItem="BVo-wb-yMM" firstAttribute="top" secondItem="Ueh-CZ-pij" secondAttribute="bottom" constant="314" id="FV3-Xw-EYk"/>
-                            <constraint firstAttribute="centerX" secondItem="Ueh-CZ-pij" secondAttribute="centerX" constant="63.5" id="Xdm-G1-xQd"/>
-                            <constraint firstItem="Ueh-CZ-pij" firstAttribute="leading" secondItem="2Bp-Xd-Tyr" secondAttribute="leadingMargin" id="kRR-Id-2sL"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="Ueh-CZ-pij" secondAttribute="trailing" constant="127" id="kzH-GV-kiy"/>
+                            <constraint firstItem="Ueh-CZ-pij" firstAttribute="trailing" secondItem="2Bp-Xd-Tyr" secondAttribute="trailingMargin" id="0U6-ie-bDc"/>
+                            <constraint firstItem="jFD-iJ-fzL" firstAttribute="leading" secondItem="2Bp-Xd-Tyr" secondAttribute="leadingMargin" id="75Q-6P-FYL"/>
+                            <constraint firstItem="jFD-iJ-fzL" firstAttribute="trailing" secondItem="2Bp-Xd-Tyr" secondAttribute="trailingMargin" id="EYX-5c-dPG"/>
+                            <constraint firstItem="Ueh-CZ-pij" firstAttribute="top" secondItem="rGL-sx-KzS" secondAttribute="bottom" constant="8" id="KaF-Qu-8lS"/>
+                            <constraint firstItem="Ueh-CZ-pij" firstAttribute="leading" secondItem="2Bp-Xd-Tyr" secondAttribute="leadingMargin" id="LQg-oy-IgS"/>
+                            <constraint firstItem="jFD-iJ-fzL" firstAttribute="top" secondItem="Ueh-CZ-pij" secondAttribute="bottom" constant="8" id="QjS-J2-SQQ"/>
+                            <constraint firstItem="BVo-wb-yMM" firstAttribute="top" secondItem="jFD-iJ-fzL" secondAttribute="bottom" constant="7" id="nw5-GT-x5k"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="New Note" id="ABR-PB-eFn">
@@ -45,6 +57,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="descriptionTextView" destination="jFD-iJ-fzL" id="gXb-gl-Yvp"/>
                         <outlet property="doneButton" destination="DYi-RI-6D3" id="ZFz-5u-BDj"/>
                         <outlet property="textField" destination="Ueh-CZ-pij" id="ilF-RC-xrd"/>
                     </connections>
@@ -52,14 +65,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="M5x-KD-gOM" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="lHh-SO-vvi" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1919" y="503"/>
+            <point key="canvasLocation" x="1027" y="476"/>
         </scene>
         <!--My Notes-->
         <scene sceneID="JkS-Qi-HPN">
             <objects>
                 <tableViewController id="O0p-kO-e0Z" customClass="NotesList" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="nCN-9b-KYc">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -122,7 +135,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9D1-lG-FUX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="408" y="503"/>
+            <point key="canvasLocation" x="217.59999999999999" y="476.17333333333335"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="YAt-ed-cj8">
@@ -140,7 +153,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XG6-17-TyV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-404" y="503"/>
+            <point key="canvasLocation" x="-215.46666666666667" y="476.17333333333335"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="RhY-DW-lla">
@@ -158,7 +171,12 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Sl1-m9-xbH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1107" y="503"/>
+            <point key="canvasLocation" x="630" y="476"/>
         </scene>
     </scenes>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
 </document>

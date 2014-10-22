@@ -12,7 +12,7 @@
 
 @property (weak, nonatomic) IBOutlet UITextField *textField;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *doneButton;
-
+@property (weak, nonatomic) IBOutlet UITextView *descriptionTextView;
 
 @end
 
