@@ -7,15 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "NoteItem.h"
+
+@class NoteData;
 
 @interface AddNote : UIViewController
 
-@property (strong, nonatomic) IBOutlet UITextField *text;
-
-
-@property NoteItem *noteItem;
-
-
+@property NoteData *noteData;
 
 @end

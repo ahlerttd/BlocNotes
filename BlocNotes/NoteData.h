@@ -15,5 +15,7 @@
 @property (nonatomic, retain) NSNumber * id;
 @property (nonatomic, retain) NSString * note;
 @property (nonatomic, retain) NSString * title;
+@property (nonatomic, retain) NSNumber *completed;
+@property (nonatomic, retain) NSDate *creationDate;
 
 @end

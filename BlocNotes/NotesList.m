@@ -9,22 +9,21 @@
 #import "NotesList.h" 
 #import "AppDelegate.h"
 #import "AddNote.h"
-#import "NoteItem.h"
 #import "NoteData.h"
 
-@interface NotesList ()
+@interface NotesList () <NSFetchedResultsControllerDelegate>
 
-@property NSMutableArray *note;
+@property NSFetchedResultsController *frc;
 
 @end
 
 @implementation NotesList
 
-@synthesize noteDataArray;
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
     
     
     AppDelegate *appDelegate =
@@ -36,12 +35,21 @@
     NSEntityDescription *entity = [NSEntityDescription
                                    entityForName:@"Note" inManagedObjectContext:context];
     [fetchRequest setEntity:entity];
-    NSError *error;
-    self.noteDataArray = [context executeFetchRequest:fetchRequest error:&error];
 
+    NSSortDescriptor *noteDescriptor = [[NSSortDescriptor alloc] initWithKey:@"title" ascending:YES];
+    NSArray *sortDescriptors = [[NSArray alloc] initWithObjects: noteDescriptor, nil];
+    
+    [fetchRequest setSortDescriptors:sortDescriptors];
+
+    self.frc = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:context sectionNameKeyPath:NULL cacheName:NULL];
+    
+    self.frc.delegate = self;
+    [self.frc performFetch:NULL];
 }
 
-
+- (void) controllerDidChangeContent:(NSFetchedResultsController *)controller{
+    [self.tableView reloadData];
+}
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -52,62 +60,25 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return [noteDataArray count];
+    return [self.frc.fetchedObjects count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ListPrototypeCell" forIndexPath:indexPath];
     
-    NoteData *noteData = [noteDataArray objectAtIndex:indexPath.row];
+    NoteData *noteData = [self.frc.fetchedObjects objectAtIndex:indexPath.row];
     cell.textLabel.text = noteData.note;
    
     
     return cell;
 }
 
-
 - (IBAction)unwindToList:(UIStoryboardSegue *)segue
 {
     
-    AddNote *source = [segue sourceViewController];
-    NoteItem *item = source.noteItem;
-    
-    if (item !=nil) {
-        
-             
-        AppDelegate *appDelegate =
-        [[UIApplication sharedApplication] delegate];
-        
-        NSManagedObjectContext *context =
-        [appDelegate managedObjectContext];
-        NoteData *noteData;
-        noteData = [NSEntityDescription
-                      insertNewObjectForEntityForName:@"Note"
-                      inManagedObjectContext:context];
-        noteData.note = source.noteItem.note;
-        
-        
-        
-        NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-        NSEntityDescription *entity = [NSEntityDescription
-                                       entityForName:@"Note" inManagedObjectContext:context];
-        [fetchRequest setEntity:entity];
-        NSError *error;
-        NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
-        for (NSManagedObject *info in fetchedObjects) {
-            NSLog(@"Note: %@", [info valueForKey:@"note"]);
-            
-        }
-        
-        self.noteDataArray = [context executeFetchRequest:fetchRequest error:&error];
-        [self.tableView reloadData];
-        
-        
-        
-    }
-   
 }
+
 
 
 

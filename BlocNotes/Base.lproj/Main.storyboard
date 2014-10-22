@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="14A388a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="GTR-DJ-8WE">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14A388a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="GTR-DJ-8WE">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -27,8 +27,7 @@
                             </textField>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jFD-iJ-fzL">
                                 <rect key="frame" x="16" y="110" width="288" height="451"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <mutableString key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda. Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</mutableString>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
@@ -47,19 +46,19 @@
                     <navigationItem key="navigationItem" title="New Note" id="ABR-PB-eFn">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="4Mu-gh-aIy">
                             <connections>
-                                <segue destination="lHh-SO-vvi" kind="unwind" unwindAction="unwindToList:" id="7YF-mb-V2f"/>
+                                <segue destination="lHh-SO-vvi" kind="unwind" unwindAction="unwindToList:" id="4jH-3F-pH5"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="done" id="DYi-RI-6D3">
                             <connections>
-                                <segue destination="lHh-SO-vvi" kind="unwind" unwindAction="unwindToList:" id="bUR-7b-7fy"/>
+                                <segue destination="lHh-SO-vvi" kind="unwind" unwindAction="unwindToList:" id="125-K6-irj"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="descriptionTextView" destination="jFD-iJ-fzL" id="gXb-gl-Yvp"/>
-                        <outlet property="doneButton" destination="DYi-RI-6D3" id="ZFz-5u-BDj"/>
-                        <outlet property="textField" destination="Ueh-CZ-pij" id="ilF-RC-xrd"/>
+                        <outlet property="doneButton" destination="DYi-RI-6D3" id="NFg-Mw-Uol"/>
+                        <outlet property="textField" destination="jFD-iJ-fzL" id="KcM-jF-UyN"/>
+                        <outlet property="titleField" destination="Ueh-CZ-pij" id="GdJ-aZ-mhW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="M5x-KD-gOM" userLabel="First Responder" sceneMemberID="firstResponder"/>

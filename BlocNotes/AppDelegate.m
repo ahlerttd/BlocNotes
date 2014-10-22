@@ -17,11 +17,11 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
-    NSManagedObjectContext *context = [self managedObjectContext];
+   /* NSManagedObjectContext *context = [self managedObjectContext];
     NoteData *noteData = [NSEntityDescription
                                       insertNewObjectForEntityForName:@"Note"
                                       inManagedObjectContext:context];
-    noteData.note = @"First Note";
+    ///noteData.note = @"First Note";
     NSError *error;
     if (![context save:&error]) {
         NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
@@ -36,7 +36,7 @@
     for (NSManagedObject *info in fetchedObjects) {
         NSLog(@"Note: %@", [info valueForKey:@"note"]);
     }
-    
+    */
     return YES;
 }
 

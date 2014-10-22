@@ -14,5 +14,7 @@
 @dynamic id;
 @dynamic note;
 @dynamic title;
+@dynamic completed;
+@dynamic creationDate;
 
 @end

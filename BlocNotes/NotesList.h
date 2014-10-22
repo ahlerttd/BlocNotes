@@ -7,13 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "AddNote.h"
+
 
 @interface NotesList : UITableViewController
 
-@property (nonatomic, strong) NSArray *noteDataArray;
-
 - (IBAction)unwindToList:(UIStoryboardSegue *)segue;
+
 
 
 @end

@@ -7,12 +7,14 @@
 //
 
 #import "AddNote.h"
+#import "NoteData.h"
+#import "AppDelegate.h"
 
 @interface AddNote ()
 
-@property (weak, nonatomic) IBOutlet UITextField *textField;
+@property (weak, nonatomic) IBOutlet UITextField *titleField;
+@property (weak, nonatomic) IBOutlet UITextView *textField;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *doneButton;
-@property (weak, nonatomic) IBOutlet UITextView *descriptionTextView;
 
 @end
 
@@ -22,10 +24,25 @@
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if (sender != self.doneButton) return;
-    if (self.textField.text.length > 0) {
-        self.noteItem = [[NoteItem alloc] init];
-        self.noteItem.note = self.textField.text;
-        self.noteItem.completed = NO;
+    if (self.textField.text.length > 0 || self.titleField.text.length > 0) {
+        
+        AppDelegate *appDelegate =
+        [[UIApplication sharedApplication] delegate];
+        
+        NSManagedObjectContext *context =
+        [appDelegate managedObjectContext];
+        NoteData *noteData;
+        noteData = [NSEntityDescription
+                    insertNewObjectForEntityForName:@"Note"
+                    inManagedObjectContext:context];
+        noteData.note = self.textField.text;
+        noteData.title = self.titleField.text;
+        noteData.completed = @(NO);
+        noteData.creationDate = [NSDate date];
+        
+        [context save: NULL];
+        
+        NSLog(@"Prepare for Segue Fired");
     }
 }
 
