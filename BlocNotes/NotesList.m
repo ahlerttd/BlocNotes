@@ -36,10 +36,11 @@
                                    entityForName:@"Note" inManagedObjectContext:context];
     [fetchRequest setEntity:entity];
 
-    NSSortDescriptor *noteDescriptor = [[NSSortDescriptor alloc] initWithKey:@"title" ascending:YES];
-    NSArray *sortDescriptors = [[NSArray alloc] initWithObjects: noteDescriptor, nil];
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"title" ascending:YES];
+    NSArray *sortDescriptors = [[NSArray alloc] initWithObjects: sortDescriptor, nil];
     
     [fetchRequest setSortDescriptors:sortDescriptors];
+        
 
     self.frc = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:context sectionNameKeyPath:NULL cacheName:NULL];
     
@@ -68,11 +69,53 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ListPrototypeCell" forIndexPath:indexPath];
     
     NoteData *noteData = [self.frc.fetchedObjects objectAtIndex:indexPath.row];
-    cell.textLabel.text = noteData.note;
+    cell.textLabel.text = noteData.title;
    
     
     return cell;
 }
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return YES;
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+    AppDelegate *appDelegate =
+    [[UIApplication sharedApplication] delegate];
+    NSManagedObjectContext *context = [appDelegate managedObjectContext];
+    
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        // Delete object from database
+        [context deleteObject:[self.frc.fetchedObjects objectAtIndex:indexPath.row]];
+        
+        NSError *error = nil;
+        if (![context save:&error]) {
+            NSLog(@"Can't Delete! %@ %@", error, [error localizedDescription]);
+            return;
+        }
+        
+        // Remove device from table view
+       /// [self.devices removeObjectAtIndex:indexPath.row];
+        ///[self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    }
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+   
+    NoteData *noteData = [self.frc.fetchedObjects objectAtIndex:[[self.tableView indexPathForSelectedRow] row]];
+    AddNote *addNote = segue.destinationViewController;
+    
+    NSLog(@"%@", noteData.note);
+    NSLog(@"%@", noteData.title);
+    
+    ///addNote.noteData = noteData;
+    
+}
+
 
 - (IBAction)unwindToList:(UIStoryboardSegue *)segue
 {

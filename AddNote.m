@@ -21,6 +21,18 @@
 @implementation AddNote
 
 
+/*- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    // Do any additional setup after loading the view.
+    if (self.noteData) {
+        [self.titleField setText:[self.editNote valueForKey:@"title"]];
+        [self.textField setText:[self.editNote valueForKey:@"note"]];
+        
+    }
+    
+}*/
+
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if (sender != self.doneButton) return;
@@ -42,8 +54,7 @@
         
         [context save: NULL];
         
-        NSLog(@"Prepare for Segue Fired");
-    }
+        }
 }
 
 @end

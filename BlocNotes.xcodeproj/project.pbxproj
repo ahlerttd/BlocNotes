@@ -10,12 +10,13 @@
 		170640E319F58FDF00971C2A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 170640E219F58FDF00971C2A /* main.m */; };
 		170640E619F58FDF00971C2A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 170640E519F58FDF00971C2A /* AppDelegate.m */; };
 		170640E919F58FDF00971C2A /* BlocNotes.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 170640E719F58FDF00971C2A /* BlocNotes.xcdatamodeld */; };
-		170640EF19F58FDF00971C2A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 170640ED19F58FDF00971C2A /* Main.storyboard */; };
 		170640F119F58FDF00971C2A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 170640F019F58FDF00971C2A /* Images.xcassets */; };
 		170640F419F58FDF00971C2A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 170640F219F58FDF00971C2A /* LaunchScreen.xib */; };
 		1706410019F58FDF00971C2A /* BlocNotesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 170640FF19F58FDF00971C2A /* BlocNotesTests.m */; };
 		1706410B19F5A33400971C2A /* AddNote.m in Sources */ = {isa = PBXBuildFile; fileRef = 1706410A19F5A33400971C2A /* AddNote.m */; };
 		1706410E19F5A3F600971C2A /* NotesList.m in Sources */ = {isa = PBXBuildFile; fileRef = 1706410D19F5A3F600971C2A /* NotesList.m */; };
+		17D1AA6319F9A83F00AB657B /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17D1AA5F19F9A83F00AB657B /* LaunchScreen.xib */; };
+		17D1AA6419F9A83F00AB657B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 17D1AA6119F9A83F00AB657B /* Main.storyboard */; };
 		17F4079419F6EFB500BCAA8F /* NoteData.m in Sources */ = {isa = PBXBuildFile; fileRef = 17F4079319F6EFB500BCAA8F /* NoteData.m */; };
 /* End PBXBuildFile section */
 
@@ -36,7 +37,6 @@
 		170640E419F58FDF00971C2A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		170640E519F58FDF00971C2A /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		170640E819F58FDF00971C2A /* BlocNotes.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BlocNotes.xcdatamodel; sourceTree = "<group>"; };
-		170640EE19F58FDF00971C2A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		170640F019F58FDF00971C2A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		170640F319F58FDF00971C2A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		170640F919F58FDF00971C2A /* BlocNotesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BlocNotesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -46,6 +46,8 @@
 		1706410A19F5A33400971C2A /* AddNote.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AddNote.m; path = ../AddNote.m; sourceTree = "<group>"; };
 		1706410C19F5A3F600971C2A /* NotesList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotesList.h; sourceTree = "<group>"; };
 		1706410D19F5A3F600971C2A /* NotesList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotesList.m; sourceTree = "<group>"; };
+		17D1AA6019F9A83F00AB657B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = LaunchScreen.xib; sourceTree = "<group>"; };
+		17D1AA6219F9A83F00AB657B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Main.storyboard; sourceTree = "<group>"; };
 		17F4079219F6EFB500BCAA8F /* NoteData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteData.h; sourceTree = "<group>"; };
 		17F4079319F6EFB500BCAA8F /* NoteData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteData.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -89,15 +91,16 @@
 		170640DF19F58FDF00971C2A /* BlocNotes */ = {
 			isa = PBXGroup;
 			children = (
+				17D1AA5E19F9A83F00AB657B /* Base.lproj */,
 				170640E419F58FDF00971C2A /* AppDelegate.h */,
 				170640E519F58FDF00971C2A /* AppDelegate.m */,
 				1706410919F5A33400971C2A /* AddNote.h */,
 				1706410A19F5A33400971C2A /* AddNote.m */,
-				170640ED19F58FDF00971C2A /* Main.storyboard */,
 				1706410C19F5A3F600971C2A /* NotesList.h */,
 				1706410D19F5A3F600971C2A /* NotesList.m */,
 				170640F019F58FDF00971C2A /* Images.xcassets */,
 				170640F219F58FDF00971C2A /* LaunchScreen.xib */,
+				17D1AA6119F9A83F00AB657B /* Main.storyboard */,
 				170640E719F58FDF00971C2A /* BlocNotes.xcdatamodeld */,
 				17F4079219F6EFB500BCAA8F /* NoteData.h */,
 				17F4079319F6EFB500BCAA8F /* NoteData.m */,
@@ -130,6 +133,14 @@
 				170640FE19F58FDF00971C2A /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		17D1AA5E19F9A83F00AB657B /* Base.lproj */ = {
+			isa = PBXGroup;
+			children = (
+				17D1AA5F19F9A83F00AB657B /* LaunchScreen.xib */,
+			);
+			path = Base.lproj;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -212,9 +223,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				170640EF19F58FDF00971C2A /* Main.storyboard in Resources */,
 				170640F419F58FDF00971C2A /* LaunchScreen.xib in Resources */,
+				17D1AA6319F9A83F00AB657B /* LaunchScreen.xib in Resources */,
 				170640F119F58FDF00971C2A /* Images.xcassets in Resources */,
+				17D1AA6419F9A83F00AB657B /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -260,20 +272,29 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		170640ED19F58FDF00971C2A /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				170640EE19F58FDF00971C2A /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		170640F219F58FDF00971C2A /* LaunchScreen.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
 				170640F319F58FDF00971C2A /* Base */,
 			);
 			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+		17D1AA5F19F9A83F00AB657B /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				17D1AA6019F9A83F00AB657B /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+		17D1AA6119F9A83F00AB657B /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				17D1AA6219F9A83F00AB657B /* Base */,
+			);
+			name = Main.storyboard;
+			path = Base.lproj;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
