@@ -17,7 +17,30 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Title" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ueh-CZ-pij">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jFD-iJ-fzL">
+                                <rect key="frame" x="16" y="110" width="288" height="451"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <navigationBar contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZQT-a7-z9h">
+                                <rect key="frame" x="16" y="7" width="320" height="44"/>
+                                <items>
+                                    <navigationItem title="Add Note" id="1T5-GL-4BR">
+                                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="2Ki-Qq-zYR">
+                                            <connections>
+                                                <segue destination="lHh-SO-vvi" kind="unwind" unwindAction="unwindToList:" id="Qyv-vx-zG0"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" title="Done" id="fIF-6I-N1v">
+                                            <connections>
+                                                <segue destination="lHh-SO-vvi" kind="unwind" unwindAction="unwindToList:" id="N7f-4i-gO9"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Title" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ueh-CZ-pij">
                                 <rect key="frame" x="16" y="72" width="288" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="mWj-5e-aem"/>
@@ -25,24 +48,23 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jFD-iJ-fzL">
-                                <rect key="frame" x="16" y="110" width="288" height="451"/>
-                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="Ueh-CZ-pij" firstAttribute="trailing" secondItem="2Bp-Xd-Tyr" secondAttribute="trailingMargin" id="0U6-ie-bDc"/>
+                            <constraint firstItem="Ueh-CZ-pij" firstAttribute="top" secondItem="ZQT-a7-z9h" secondAttribute="bottom" constant="8" id="4R9-wa-3xc"/>
                             <constraint firstItem="jFD-iJ-fzL" firstAttribute="leading" secondItem="2Bp-Xd-Tyr" secondAttribute="leadingMargin" id="75Q-6P-FYL"/>
+                            <constraint firstItem="ZQT-a7-z9h" firstAttribute="leading" secondItem="Ueh-CZ-pij" secondAttribute="leading" id="Dqo-9E-Qo1"/>
                             <constraint firstItem="jFD-iJ-fzL" firstAttribute="trailing" secondItem="2Bp-Xd-Tyr" secondAttribute="trailingMargin" id="EYX-5c-dPG"/>
-                            <constraint firstItem="Ueh-CZ-pij" firstAttribute="top" secondItem="rGL-sx-KzS" secondAttribute="bottom" constant="8" id="KaF-Qu-8lS"/>
+                            <constraint firstItem="Ueh-CZ-pij" firstAttribute="top" secondItem="rGL-sx-KzS" secondAttribute="bottom" constant="50" id="KaF-Qu-8lS"/>
                             <constraint firstItem="Ueh-CZ-pij" firstAttribute="leading" secondItem="2Bp-Xd-Tyr" secondAttribute="leadingMargin" id="LQg-oy-IgS"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="ZQT-a7-z9h" secondAttribute="trailing" id="OOf-9b-pO1"/>
                             <constraint firstItem="jFD-iJ-fzL" firstAttribute="top" secondItem="Ueh-CZ-pij" secondAttribute="bottom" constant="8" id="QjS-J2-SQQ"/>
                             <constraint firstItem="BVo-wb-yMM" firstAttribute="top" secondItem="jFD-iJ-fzL" secondAttribute="bottom" constant="7" id="nw5-GT-x5k"/>
+                            <constraint firstItem="ZQT-a7-z9h" firstAttribute="leading" secondItem="2Bp-Xd-Tyr" secondAttribute="leadingMargin" id="pQq-12-gZC"/>
                         </constraints>
                     </view>
+                    <toolbarItems/>
                     <navigationItem key="navigationItem" title="New Note" id="ABR-PB-eFn">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="4Mu-gh-aIy">
                             <connections>
@@ -55,8 +77,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="doneButton" destination="DYi-RI-6D3" id="NFg-Mw-Uol"/>
+                        <outlet property="doneButton" destination="fIF-6I-N1v" id="J72-Il-AYC"/>
                         <outlet property="textField" destination="jFD-iJ-fzL" id="KcM-jF-UyN"/>
                         <outlet property="titleField" destination="Ueh-CZ-pij" id="GdJ-aZ-mhW"/>
                     </connections>
@@ -64,7 +87,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="M5x-KD-gOM" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="lHh-SO-vvi" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1027" y="476"/>
+            <point key="canvasLocation" x="655" y="476"/>
         </scene>
         <!--My Notes-->
         <scene sceneID="JkS-Qi-HPN">
@@ -89,7 +112,7 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="2Dc-Wm-xAM" kind="modal" identifier="showNoteDetail" id="9Fm-eN-Gdv"/>
+                                    <segue destination="39N-XF-f1w" kind="modal" identifier="editNote" id="4Vt-FU-Ohz"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -102,7 +125,7 @@
                     <navigationItem key="navigationItem" title="My Notes" id="OVV-tm-2ND">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="6cw-DA-bno">
                             <connections>
-                                <segue destination="2Dc-Wm-xAM" kind="modal" id="Uma-CB-pVW"/>
+                                <segue destination="39N-XF-f1w" kind="modal" id="hk7-0z-zMj"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -129,24 +152,6 @@
             </objects>
             <point key="canvasLocation" x="-215.46666666666667" y="476.17333333333335"/>
         </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="RhY-DW-lla">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="2Dc-Wm-xAM" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="PlF-vX-tmr">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="39N-XF-f1w" kind="relationship" relationship="rootViewController" id="bph-94-o7t"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Sl1-m9-xbH" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="630" y="476"/>
-        </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
@@ -154,6 +159,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="9Fm-eN-Gdv"/>
+        <segue reference="4Vt-FU-Ohz"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -16,28 +16,38 @@
 @property (weak, nonatomic) IBOutlet UITextView *textField;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *doneButton;
 
+
 @end
 
 @implementation AddNote
 
 
-/*- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    if (self.noteData) {
-        [self.titleField setText:[self.editNote valueForKey:@"title"]];
-        [self.textField setText:[self.editNote valueForKey:@"note"]];
-        
-    }
-    
-}*/
+- (void)viewDidLoad
+ {
+ [super viewDidLoad];
+ // Do any additional setup after loading the view.
+ if (self.editNote) {
+     [self.titleField setText:[self.editNote valueForKey:@"title"]];
+     [self.textField setText:[self.editNote valueForKey:@"note"]];
+ 
+ }
+ 
+ }
 
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if (sender != self.doneButton) return;
     if (self.textField.text.length > 0 || self.titleField.text.length > 0) {
         
+        if(self.editNote) {
+            
+            [self.editNote setValue:self.titleField.text forKey:@"title"];
+            [self.editNote setValue:self.textField.text forKey:@"note"];
+            
+        }
+        
+        else
+        {
         AppDelegate *appDelegate =
         [[UIApplication sharedApplication] delegate];
         
@@ -55,6 +65,7 @@
         [context save: NULL];
         
         }
+    }
 }
 
 @end

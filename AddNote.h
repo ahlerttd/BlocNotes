@@ -7,11 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AppDelegate.h"
 
 @class NoteData;
 
 @interface AddNote : UIViewController
 
 @property NoteData *noteData;
+@property (strong) NSManagedObject *editNote;
 
 @end

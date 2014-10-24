@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 Trevor Ahlert. All rights reserved.
 //
 
-#import "NotesList.h" 
+#import "NotesList.h"
 #import "AppDelegate.h"
 #import "AddNote.h"
 #import "NoteData.h"
@@ -35,13 +35,13 @@
     NSEntityDescription *entity = [NSEntityDescription
                                    entityForName:@"Note" inManagedObjectContext:context];
     [fetchRequest setEntity:entity];
-
+    
     NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"title" ascending:YES];
     NSArray *sortDescriptors = [[NSArray alloc] initWithObjects: sortDescriptor, nil];
     
     [fetchRequest setSortDescriptors:sortDescriptors];
-        
-
+    
+    
     self.frc = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:context sectionNameKeyPath:NULL cacheName:NULL];
     
     self.frc.delegate = self;
@@ -54,7 +54,7 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-
+    
     return 1;
 }
 
@@ -70,7 +70,7 @@
     
     NoteData *noteData = [self.frc.fetchedObjects objectAtIndex:indexPath.row];
     cell.textLabel.text = noteData.title;
-   
+    
     
     return cell;
 }
@@ -98,24 +98,23 @@
         }
         
         // Remove device from table view
-       /// [self.devices removeObjectAtIndex:indexPath.row];
+        /// [self.devices removeObjectAtIndex:indexPath.row];
         ///[self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
     }
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-   
-    NoteData *noteData = [self.frc.fetchedObjects objectAtIndex:[[self.tableView indexPathForSelectedRow] row]];
+    
+     if ([[segue identifier] isEqualToString:@"editNote"]) {
+    
+    NSManagedObject *selectedNote = [self.frc.fetchedObjects objectAtIndex:[[self.tableView indexPathForSelectedRow] row]];
     AddNote *addNote = segue.destinationViewController;
     
-    NSLog(@"%@", noteData.note);
-    NSLog(@"%@", noteData.title);
-    
-    ///addNote.noteData = noteData;
+         addNote.editNote = selectedNote;
     
 }
-
+}
 
 - (IBAction)unwindToList:(UIStoryboardSegue *)segue
 {
