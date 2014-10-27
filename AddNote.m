@@ -15,6 +15,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *titleField;
 @property (weak, nonatomic) IBOutlet UITextView *textField;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *doneButton;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *action;
 
 
 @end
@@ -33,6 +34,18 @@
  }
  
  }
+- (IBAction)share:(id)sender {
+    NSMutableArray *sharedNote = [NSMutableArray new];
+    
+    if (self.titleField.text.length > 0) {
+        [sharedNote addObject:self.titleField.text];
+    }
+    if (self.textField.text.length > 0) {
+        [sharedNote addObject:self.textField.text];
+    }
+    UIActivityViewController *activityController = [[UIActivityViewController alloc] initWithActivityItems:sharedNote applicationActivities:nil];
+    [self presentViewController:activityController animated:YES completion:nil];
+}
 
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
@@ -66,6 +79,20 @@
         
         }
     }
+}
+
+- (void) shareText: (NSString *)text {
+    
+    NSMutableArray *sharedNote = [NSMutableArray new];
+    
+    if (self.titleField.text.length > 0) {
+        [sharedNote addObject:self.titleField.text];
+    }
+    if (self.textField.text.length > 0) {
+        [sharedNote addObject:self.textField.text];
+    }
+    UIActivityViewController *activityController = [[UIActivityViewController alloc] initWithActivityItems:sharedNote applicationActivities:nil];
+    [self presentViewController:activityController animated:YES completion:nil];
 }
 
 @end

@@ -14,6 +14,7 @@
 @interface NotesList () <NSFetchedResultsControllerDelegate>
 
 @property NSFetchedResultsController *frc;
+@property NSArray *filteredTableData;
 
 @end
 
@@ -60,20 +61,89 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    // Return the number of rows in the section.
-    return [self.frc.fetchedObjects count];
+ 
+    if (tableView == self.searchDisplayController.searchResultsTableView) {
+        return [self.filteredTableData count];
+    } else {
+        return [self.frc.fetchedObjects count];;
+    }
+    
+    
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ListPrototypeCell" forIndexPath:indexPath];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ListPrototypeCell"];
+    
+    if (cell == nil) {
+        
+        cell =
+        [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle
+                               reuseIdentifier:@"ListPrototypeCell"];
+        
+    }
+    
+    NoteData *noteData = nil;
+    
+    if (tableView == self.searchDisplayController.searchResultsTableView){
+        NoteData *noteData = [self.filteredTableData objectAtIndex:indexPath.row];
+        cell.textLabel.text = noteData.title;
+    } else {
+    
     
     NoteData *noteData = [self.frc.fetchedObjects objectAtIndex:indexPath.row];
-    cell.textLabel.text = noteData.title;
+        cell.textLabel.text = noteData.title;
+    }
+    
+    
     
     
     return cell;
 }
+
+- (void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope
+{
+    AppDelegate *appDelegate =
+    [[UIApplication sharedApplication] delegate];
+    NSManagedObjectContext *managedObjectContext = [appDelegate managedObjectContext];
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription
+                                   entityForName:@"Note" inManagedObjectContext:managedObjectContext];
+    [fetchRequest setEntity:entity];
+    NSSortDescriptor* sortDescriptor = [[NSSortDescriptor alloc]
+                                        initWithKey:@"title" ascending:YES];
+    NSArray* sortDescriptors = [[NSArray alloc] initWithObjects:sortDescriptor, nil];
+    [fetchRequest setSortDescriptors:sortDescriptors];
+    
+    if(searchText.length > 0)
+    {
+        // Define how we want our entities to be filtered
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"title contains[c] %@", searchText];
+        [fetchRequest setPredicate:predicate];
+    }
+    
+    NSError *error;
+    NSArray* loadedEntities = [managedObjectContext executeFetchRequest:fetchRequest error:&error];
+    self.filteredTableData = [[NSMutableArray alloc] initWithArray:loadedEntities];
+    
+    [self.tableView reloadData];
+
+}
+
+
+
+
+
+-(BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
+{
+    [self filterContentForSearchText:searchString
+                               scope:[[self.searchDisplayController.searchBar scopeButtonTitles]
+                                      objectAtIndex:[self.searchDisplayController.searchBar
+                                                     selectedScopeButtonIndex]]];
+    
+    return YES;
+}
+
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
