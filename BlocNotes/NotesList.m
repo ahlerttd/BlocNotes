@@ -88,6 +88,7 @@
     if (tableView == self.searchDisplayController.searchResultsTableView){
         NoteData *noteData = [self.filteredTableData objectAtIndex:indexPath.row];
         cell.textLabel.text = noteData.title;
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     } else {
     
     
@@ -131,9 +132,6 @@
 }
 
 
-
-
-
 -(BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
 {
     [self filterContentForSearchText:searchString
@@ -167,27 +165,50 @@
             return;
         }
         
-        // Remove device from table view
-        /// [self.devices removeObjectAtIndex:indexPath.row];
-        ///[self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
     }
 }
+
+#pragma mark - TableView Delegate
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    // Perform segue to candy detail
+    [self performSegueWithIdentifier:@"editNote" sender:tableView];
+}
+
+
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     
      if ([[segue identifier] isEqualToString:@"editNote"]) {
-    
-    NSManagedObject *selectedNote = [self.frc.fetchedObjects objectAtIndex:[[self.tableView indexPathForSelectedRow] row]];
     AddNote *addNote = segue.destinationViewController;
+         
+         if(sender == self.searchDisplayController.searchResultsTableView) {
+             
+            NSManagedObject *selectedNote = [self.filteredTableData objectAtIndex:[[self.searchDisplayController.searchResultsTableView indexPathForSelectedRow] row]];
+             addNote.editNote = selectedNote;
+         }
+         
+         else {
+         
+    NSManagedObject *selectedNote = [self.frc.fetchedObjects objectAtIndex:[[self.tableView indexPathForSelectedRow] row]];
     
-         addNote.editNote = selectedNote;
+             
+              addNote.editNote = selectedNote;
+         }
+        
     
 }
 }
 
 - (IBAction)unwindToList:(UIStoryboardSegue *)segue
 {
+    
+    if (self.searchDisplayController.searchResultsTableView){
+    
+        [self.searchDisplayController setActive:NO];
+        
+    }
     
 }
 

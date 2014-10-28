@@ -10,9 +10,10 @@
 
 
 
-@interface NotesList : UITableViewController
+@interface NotesList : UITableViewController <UISearchBarDelegate, UISearchDisplayDelegate>
 
 
+@property (weak, nonatomic) IBOutlet UISearchBar *notesSearchBar;
 
 - (IBAction)unwindToList:(UIStoryboardSegue *)segue;
 
