@@ -87,13 +87,16 @@
     
     if (tableView == self.searchDisplayController.searchResultsTableView){
         NoteData *noteData = [self.filteredTableData objectAtIndex:indexPath.row];
-        cell.textLabel.text = noteData.title;
+        NSString *titleAndNote = [NSString stringWithFormat:@"%@ - %@", noteData.title, noteData.note];
+        
+        cell.textLabel.text = titleAndNote;
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     } else {
     
     
     NoteData *noteData = [self.frc.fetchedObjects objectAtIndex:indexPath.row];
-        cell.textLabel.text = noteData.title;
+        NSString *titleAndNote = [NSString stringWithFormat:@"%@ - %@", noteData.title, noteData.note];
+        cell.textLabel.text = titleAndNote;
     }
     
     
@@ -119,7 +122,7 @@
     if(searchText.length > 0)
     {
         // Define how we want our entities to be filtered
-        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"title contains[c] %@", searchText];
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(title contains[c] %@) OR (note contains[c] %@)", searchText, searchText];
         [fetchRequest setPredicate:predicate];
     }
     
