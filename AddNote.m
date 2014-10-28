@@ -35,6 +35,7 @@
  
  }
 - (IBAction)share:(id)sender {
+
     NSMutableArray *sharedNote = [NSMutableArray new];
     
     if (self.titleField.text.length > 0) {
@@ -70,8 +71,16 @@
         noteData = [NSEntityDescription
                     insertNewObjectForEntityForName:@"Note"
                     inManagedObjectContext:context];
+            if (self.titleField.text.length > 0){
+                noteData.title = self.titleField.text;
+            }
+            else {
+                NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+                [dateFormatter setDateFormat:@"MMM d, yyyy 'at' h:mm a"];
+                NSString *stringFromDate = [dateFormatter stringFromDate:[NSDate date]];
+                noteData.title = stringFromDate;
+            }
         noteData.note = self.textField.text;
-        noteData.title = self.titleField.text;
         noteData.completed = @(NO);
         noteData.creationDate = [NSDate date];
         
