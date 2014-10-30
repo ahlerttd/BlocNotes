@@ -1,69 +1,78 @@
 //
-//  AppDelegate.m
-//  BlocNotes
+//  ShareViewController.m
+//  BlocNotesShareExtension
 //
-//  Created by Trevor Ahlert on 10/20/14.
+//  Created by Trevor Ahlert on 10/30/14.
 //  Copyright (c) 2014 Trevor Ahlert. All rights reserved.
 //
 
-#import "AppDelegate.h"
+#import "ShareViewController.h"
+#import "NoteData.h"
 
-@interface AppDelegate ()
+@interface ShareViewController ()
 
 @end
 
-@implementation AppDelegate
+@implementation ShareViewController
 
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+- (void)viewDidLoad{
+    [super viewDidLoad];
     
-   /* NSManagedObjectContext *context = [self managedObjectContext];
-    NoteData *noteData = [NSEntityDescription
-                                      insertNewObjectForEntityForName:@"Note"
-                                      inManagedObjectContext:context];
-    ///noteData.note = @"First Note";
-    NSError *error;
-    if (![context save:&error]) {
-        NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
+}
+
+
+
+- (BOOL)isContentValid {
+    NSInteger messageLength = [[self.contentText stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length];
+    NSInteger charactersRemaining = 100 - messageLength;
+    self.charactersRemaining = @(charactersRemaining);
+    
+    if (charactersRemaining >= 0) {
+        return YES;
     }
     
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    NSEntityDescription *entity = [NSEntityDescription
-                                   entityForName:@"Note" inManagedObjectContext:context];
-    [fetchRequest setEntity:entity];
+    return NO;
+}
+
+- (void)didSelectPost {
+    // This is called after the user selects Post. Do the upload of contentText and/or NSExtensionContext attachments.
     
-    NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
-    for (NSManagedObject *info in fetchedObjects) {
-        NSLog(@"Note: %@", [info valueForKey:@"note"]);
-    }
-    */
-    return YES;
+    // Inform the host that we're done, so it un-blocks its UI. Note: Alternatively you could call super's -didSelectPost, which will similarly complete the extension context.
+    NSExtensionItem *inputItem = self.extensionContext.inputItems.firstObject;
+    NSExtensionItem *outputItem = [inputItem copy];
+    outputItem.attributedContentText = [[NSAttributedString alloc] initWithString:self.contentText attributes:nil];
+    NSArray *outputItems = @[outputItem];
+    [self.extensionContext completeRequestReturningItems:outputItems completionHandler:nil];
+    NSLog(@"Share Output %@", self.contentText);
+    
+    
+    NSManagedObjectContext *context = self.managedObjectContext;
+    NoteData *noteData;
+    noteData = [NSEntityDescription
+                insertNewObjectForEntityForName:@"Note"
+                inManagedObjectContext:context];
+
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:@"MMM d, yyyy 'at' h:mm a"];
+        NSString *stringFromDate = [dateFormatter stringFromDate:[NSDate date]];
+        noteData.title = stringFromDate;
+    
+    noteData.note = self.contentText;
+
+    
+    [context save: NULL];
+
+    
+    
+    
 }
 
-
-- (void)applicationWillResignActive:(UIApplication *)application {
-    // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
-    // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
+- (NSArray *)configurationItems {
+    // To add configuration options via table cells at the bottom of the sheet, return an array of SLComposeSheetConfigurationItem here.
+    return @[];
 }
 
-- (void)applicationDidEnterBackground:(UIApplication *)application {
-    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
-    // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
-}
-
-- (void)applicationWillEnterForeground:(UIApplication *)application {
-    // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
-}
-
-- (void)applicationDidBecomeActive:(UIApplication *)application {
-    // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-}
-
-- (void)applicationWillTerminate:(UIApplication *)application {
-    // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
-    // Saves changes in the application's managed object context before the application terminates.
-    [self saveContext];
-}
 
 #pragma mark - Core Data stack
 

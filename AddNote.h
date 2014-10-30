@@ -16,4 +16,5 @@
 @property NoteData *noteData;
 @property (strong) NSManagedObject *editNote;
 
+
 @end

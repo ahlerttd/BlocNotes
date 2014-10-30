@@ -47,6 +47,7 @@
     
     self.frc.delegate = self;
     [self.frc performFetch:NULL];
+    [self.tableView reloadData];
 }
 
 - (void) controllerDidChangeContent:(NSFetchedResultsController *)controller{
