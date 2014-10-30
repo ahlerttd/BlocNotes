@@ -61,7 +61,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
- 
+    
     if (tableView == self.searchDisplayController.searchResultsTableView) {
         return [self.filteredTableData count];
     } else {
@@ -92,9 +92,9 @@
         cell.textLabel.text = titleAndNote;
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     } else {
-    
-    
-    NoteData *noteData = [self.frc.fetchedObjects objectAtIndex:indexPath.row];
+        
+        
+        NoteData *noteData = [self.frc.fetchedObjects objectAtIndex:indexPath.row];
         NSString *titleAndNote = [NSString stringWithFormat:@"%@ - %@", noteData.title, noteData.note];
         cell.textLabel.text = titleAndNote;
     }
@@ -131,7 +131,7 @@
     self.filteredTableData = [[NSMutableArray alloc] initWithArray:loadedEntities];
     
     [self.tableView reloadData];
-
+    
 }
 
 
@@ -183,32 +183,32 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     
-     if ([[segue identifier] isEqualToString:@"editNote"]) {
-    AddNote *addNote = segue.destinationViewController;
-         
-         if(sender == self.searchDisplayController.searchResultsTableView) {
-             
-            NSManagedObject *selectedNote = [self.filteredTableData objectAtIndex:[[self.searchDisplayController.searchResultsTableView indexPathForSelectedRow] row]];
-             addNote.editNote = selectedNote;
-         }
-         
-         else {
-         
-    NSManagedObject *selectedNote = [self.frc.fetchedObjects objectAtIndex:[[self.tableView indexPathForSelectedRow] row]];
-    
-             
-              addNote.editNote = selectedNote;
-         }
+    if ([[segue identifier] isEqualToString:@"editNote"]) {
+        AddNote *addNote = segue.destinationViewController;
         
-    
-}
+        if(sender == self.searchDisplayController.searchResultsTableView) {
+            
+            NSManagedObject *selectedNote = [self.filteredTableData objectAtIndex:[[self.searchDisplayController.searchResultsTableView indexPathForSelectedRow] row]];
+            addNote.editNote = selectedNote;
+        }
+        
+        else {
+            
+            NSManagedObject *selectedNote = [self.frc.fetchedObjects objectAtIndex:[[self.tableView indexPathForSelectedRow] row]];
+            
+            
+            addNote.editNote = selectedNote;
+        }
+        
+        
+    }
 }
 
 - (IBAction)unwindToList:(UIStoryboardSegue *)segue
 {
     
     if (self.searchDisplayController.searchResultsTableView){
-    
+        
         [self.searchDisplayController setActive:NO];
         
     }
