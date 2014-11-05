@@ -48,6 +48,20 @@
     self.frc.delegate = self;
     [self.frc performFetch:NULL];
     [self.tableView reloadData];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(applicationDidBecomeActive:)
+                                                 name:UIApplicationDidBecomeActiveNotification
+                                               object:nil];
+}
+
+- (void)applicationDidBecomeActive: (id)sender{
+    [self.frc performFetch:NULL];
+    [self.tableView reloadData];
+}
+
+-(void)dealloc{
+     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIApplicationDidBecomeActiveNotification object:nil];
 }
 
 - (void) controllerDidChangeContent:(NSFetchedResultsController *)controller{
